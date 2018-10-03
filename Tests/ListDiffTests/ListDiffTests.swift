@@ -2,7 +2,7 @@ import Foundation
 import XCTest
 import ListDiff
 
-extension Int : Diffable {
+extension Int: Diffable {
     public var diffIdentifier: AnyHashable {
         return String(self)
     }
@@ -14,7 +14,7 @@ extension String: Diffable {
     }
 }
 
-class TestObject : Diffable, Equatable {
+final class TestObject: Diffable, Equatable {
     let diffIdentifier: AnyHashable
     let value: Int
     
@@ -28,7 +28,7 @@ class TestObject : Diffable, Equatable {
     }
 }
 
-class TestObjectRef : Diffable, Equatable {
+final class TestObjectRef: Diffable, Equatable {
     let diffIdentifier: AnyHashable
     let value: Int
     
@@ -42,7 +42,7 @@ class TestObjectRef : Diffable, Equatable {
     }
 }
 
-extension NSObject : Diffable {
+extension NSObject: Diffable {
     public var diffIdentifier: AnyHashable {
         return self.hash
     }
@@ -56,7 +56,8 @@ extension IndexSet {
     }
 }
 
-class ListDiffTests : XCTestCase {
+final class ListDiffTests: XCTestCase {
+    
     func test_whenDiffingEmptyArrays_thatResultHasNoChanges() {
         let o = Array<Int>()
         let n = Array<Int>()
@@ -130,8 +131,8 @@ class ListDiffTests : XCTestCase {
         // http://dl.acm.org/citation.cfm?id=359467&dl=ACM&coll=DL&CFID=529464736&CFTOKEN=43088172
         let oString = "much writing is like snow , a mass of long words and phrases falls upon the relevant facts covering up the details ."
         let nString = "a mass of latin words falls upon the relevant facts like soft snow , covering up the details ."
-        let o = oString.characters.split(separator: " ").map(String.init)
-        let n = nString.characters.split(separator: " ").map(String.init)
+        let o = oString.split(separator: " ").map(String.init)
+        let n = nString.split(separator: " ").map(String.init)
         let result = List.diffing(oldArray: o, newArray: n)
         XCTAssertEqual(result.inserts, IndexSet.from(array: [3, 11]))
     }
@@ -140,8 +141,8 @@ class ListDiffTests : XCTestCase {
         // http://dl.acm.org/citation.cfm?id=359467&dl=ACM&coll=DL&CFID=529464736&CFTOKEN=43088172
         let oString = "much writing is like snow , a mass of long words and phrases falls upon the relevant facts covering up the details ."
         let nString = "a mass of latin words falls upon the relevant facts like soft snow , covering up the details ."
-        let o = oString.characters.split(separator: " ").map(String.init)
-        let n = nString.characters.split(separator: " ").map(String.init)
+        let o = oString.split(separator: " ").map(String.init)
+        let n = nString.split(separator: " ").map(String.init)
         let result = List.diffing(oldArray: o, newArray: n)
         XCTAssertEqual(result.deletes, IndexSet.from(array: [0, 1, 2, 9, 11, 12]))
     }
@@ -360,7 +361,7 @@ class ListDiffTests : XCTestCase {
         XCTAssertEqual(result.newIndexFor(identifier: "9"), 1)
     }
 
-    static var allTests : [(String, (ListDiffTests) -> () throws -> Void)] {
+    static var allTests: [(String, (ListDiffTests) -> () throws -> Void)] {
         return [
             ("test_whenDiffingEmptyArrays_thatResultHasNoChanges", test_whenDiffingEmptyArrays_thatResultHasNoChanges),
             ("test_whenDiffingFromEmptyArray_thatResultHasChanges", test_whenDiffingFromEmptyArray_thatResultHasChanges),
