@@ -139,7 +139,10 @@ public enum List {
         
         // pass 3
         // handle data that occurs in both arrays
-        newRecords.enumerated().filter { $1.entry.occurOnBothSides }.forEach { i, newRecord in
+        newRecords.enumerated().forEach { i, newRecord in
+            guard newRecord.entry.occurOnBothSides else {
+                return
+            }
             let entry = newRecord.entry
             // grab and pop the top old index. if the item was inserted this will be nil
             assert(!entry.oldIndexes.isEmpty, "Old indexes is empty while iterating new item \(i). Should have nil")
@@ -180,7 +183,7 @@ public enum List {
         
         //reset and track offsets from inserted items to calculate where items have moved
         runningOffset = 0
-        /* let insertOffsets */_ = newRecords.enumerated().map { i, newRecord -> Int in
+        newRecords.enumerated().forEach { i, newRecord in
             let insertOffset = runningOffset
             if let oldIndex = newRecord.index {
                 // note that an entry can be updated /and/ moved
@@ -199,7 +202,6 @@ public enum List {
                 runningOffset += 1
             }
             result.newMap[newArray[i].diffIdentifier] = i
-            return insertOffset
         }
         
         assert(result.validate(oldArray, newArray), "Sanity check failed applying \(result.inserts.count) inserts and \(result.deletes.count) deletes to old count \(oldArray.count) equaling new count \(newArray.count)")
