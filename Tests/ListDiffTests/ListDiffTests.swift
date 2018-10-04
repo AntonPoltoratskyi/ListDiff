@@ -61,14 +61,14 @@ final class ListDiffTests: XCTestCase {
     func test_whenDiffingEmptyArrays_thatResultHasNoChanges() {
         let o = Array<Int>()
         let n = Array<Int>()
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertFalse(result.hasChanges)
     }
     
     func test_whenDiffingFromEmptyArray_thatResultHasChanges() {
         let o = Array<Int>()
         let n = Array<Int>(arrayLiteral: 1)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.inserts, IndexSet(integer: 0))
         XCTAssertEqual(result.changeCount, 1)
@@ -77,7 +77,7 @@ final class ListDiffTests: XCTestCase {
     func test_whenDiffingToEmptyArray_thatResultHasChanges() {
         let o = Array<Int>(arrayLiteral: 1)
         let n = Array<Int>()
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.deletes, IndexSet(integer: 0))
         XCTAssertEqual(result.changeCount, 1)
@@ -86,7 +86,7 @@ final class ListDiffTests: XCTestCase {
     func test_whenSwappingObjects_thatResultHasMoves() {
         let o = Array<Int>(arrayLiteral: 1, 2)
         let n = Array<Int>(arrayLiteral: 2, 1)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.moves, [List.MoveIndex(from: 1, to: 0), List.MoveIndex(from: 0, to: 1)])
         XCTAssertEqual(result.changeCount, 2)
@@ -96,7 +96,7 @@ final class ListDiffTests: XCTestCase {
         // "tricks" is having multiple 3s
         let o = Array<Int>(arrayLiteral: 1, 2, 3, 3, 4)
         let n = Array<Int>(arrayLiteral: 2, 3, 1, 3, 4)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.moves, [List.MoveIndex(from: 1, to: 0), List.MoveIndex(from: 2, to: 1), List.MoveIndex(from: 0, to: 2)])
         XCTAssertEqual(result.changeCount, 3)
@@ -105,7 +105,7 @@ final class ListDiffTests: XCTestCase {
     func test_whenSwappingObjects_thatResultHasMoves2() {
         let o = Array<Int>(arrayLiteral: 1, 2, 3, 4)
         let n = Array<Int>(arrayLiteral: 2, 4, 5, 3)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.moves, [List.MoveIndex(from: 3, to: 1), List.MoveIndex(from: 2, to: 3)])
     }
@@ -121,7 +121,7 @@ final class ListDiffTests: XCTestCase {
             TestObject(diffIdentifier: "1", value: 3), // value updated from 1 to 3
             TestObject(diffIdentifier: "2", value: 2),
         ]
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.updates, IndexSet(integer: 1))
         XCTAssertEqual(result.changeCount, 1)
@@ -133,7 +133,7 @@ final class ListDiffTests: XCTestCase {
         let nString = "a mass of latin words falls upon the relevant facts like soft snow , covering up the details ."
         let o = oString.split(separator: " ").map(String.init)
         let n = nString.split(separator: " ").map(String.init)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertEqual(result.inserts, IndexSet.from(array: [3, 11]))
     }
     
@@ -143,14 +143,14 @@ final class ListDiffTests: XCTestCase {
         let nString = "a mass of latin words falls upon the relevant facts like soft snow , covering up the details ."
         let o = oString.split(separator: " ").map(String.init)
         let n = nString.split(separator: " ").map(String.init)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertEqual(result.deletes, IndexSet.from(array: [0, 1, 2, 9, 11, 12]))
     }
     
     func test_whenDeletingItems_withInserts_withMoves_thatResultHasInsertsMovesAndDeletes() {
         let o = Array<Int>(arrayLiteral: 0, 1, 2, 3, 4, 5, 6, 7, 8)
         let n = Array<Int>(arrayLiteral: 0, 2, 3, 4, 7, 6, 9, 5, 10)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.deletes, IndexSet.from(array: [1, 8]))
         XCTAssertEqual(result.inserts, IndexSet.from(array: [6, 8]))
@@ -168,7 +168,7 @@ final class ListDiffTests: XCTestCase {
             TestObject(diffIdentifier: "1", value: 1),
             TestObject(diffIdentifier: "0", value: 0),
             ]
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.moves, [List.MoveIndex(from: 2, to: 0), List.MoveIndex(from: 0, to: 2)])
         XCTAssertEqual(result.updates, IndexSet(integer: 2))
@@ -186,7 +186,7 @@ final class ListDiffTests: XCTestCase {
             TestObjectRef(diffIdentifier: "1", value: 1), // new pointer
             o[2]
         ]
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(result.updates, IndexSet(integer: 1))
         XCTAssertEqual(result.changeCount, 1)
@@ -199,14 +199,14 @@ final class ListDiffTests: XCTestCase {
             TestObjectRef(diffIdentifier: "2", value: 2),
             ]
         let n = o.map { $0 }
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertFalse(result.hasChanges)
     }
     
     func test_whenDeletingObjects_withArrayOfEqualObjects_thatChangeCountMatches() {
         let o = Array<String>(arrayLiteral: "dog", "dog", "dog", "dog")
         let n = Array<String>(arrayLiteral: "dog", "dog")
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(o.count + result.inserts.count - result.deletes.count, 2)
     }
@@ -214,7 +214,7 @@ final class ListDiffTests: XCTestCase {
     func test_whenInsertingObjects_withArrayOfEqualObjects_thatChangeCountMatches() {
         let o = Array<String>(arrayLiteral: "dog", "dog")
         let n = Array<String>(arrayLiteral: "dog", "dog", "dog", "dog")
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(o.count + result.inserts.count - result.deletes.count, 4)
     }
@@ -233,7 +233,7 @@ final class ListDiffTests: XCTestCase {
         ]
         var n = o
         n.insert(NSString(string: "cat"), at: 5)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(o.count + result.inserts.count - result.deletes.count, n.count)
     }
@@ -270,7 +270,7 @@ final class ListDiffTests: XCTestCase {
             NSString(string: "fish"),
             o[13],
         ]
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(o.count + result.inserts.count - result.deletes.count, n.count)
     }
@@ -290,7 +290,7 @@ final class ListDiffTests: XCTestCase {
             NSNumber(integerLiteral: 3),
             NSString(string: "cat"),
         ]
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertFalse(result.hasChanges)
     }
     
@@ -317,7 +317,7 @@ final class ListDiffTests: XCTestCase {
             NSString(string: "fish"),
             NSNumber(integerLiteral: 65),
         ]
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertEqual(Set(result.moves.map { $0.from }).count, result.moves.count)
     }
@@ -325,7 +325,7 @@ final class ListDiffTests: XCTestCase {
     func test_whenMovingObjectShiftsOthers_thatMovesContainRequiredMoves() {
         let o = Array<Int>(arrayLiteral: 1, 2, 3, 4, 5, 6, 7)
         let n = Array<Int>(arrayLiteral: 1, 4, 5, 2, 3, 6, 7)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertTrue(result.hasChanges)
         XCTAssertTrue(result.moves.contains(List.MoveIndex(from: 3, to: 1)))
         XCTAssertTrue(result.moves.contains(List.MoveIndex(from: 1, to: 3)))
@@ -334,7 +334,7 @@ final class ListDiffTests: XCTestCase {
     func test_whenDiffing_thatOldIndexesMatch() {
         let o = Array<Int>(arrayLiteral: 1, 2, 3, 4, 5, 6, 7)
         let n = Array<Int>(arrayLiteral: 2, 9, 3, 1, 5, 6, 8)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertEqual(result.oldIndexFor(identifier: "1"), 0)
         XCTAssertEqual(result.oldIndexFor(identifier: "2"), 1)
         XCTAssertEqual(result.oldIndexFor(identifier: "3"), 2)
@@ -349,7 +349,7 @@ final class ListDiffTests: XCTestCase {
     func test_whenDiffing_thatNewIndexesMatch() {
         let o = Array<Int>(arrayLiteral: 1, 2, 3, 4, 5, 6, 7)
         let n = Array<Int>(arrayLiteral: 2, 9, 3, 1, 5, 6, 8)
-        let result = List.diffing(oldArray: o, newArray: n)
+        let result = List.diffing(old: o, new: n)
         XCTAssertEqual(result.newIndexFor(identifier: "1"), 3)
         XCTAssertEqual(result.newIndexFor(identifier: "2"), 0)
         XCTAssertEqual(result.newIndexFor(identifier: "3"), 2)
