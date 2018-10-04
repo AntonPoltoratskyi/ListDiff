@@ -1,23 +1,5 @@
 import Foundation
 
-struct Stack<Element> {
-    private(set) var items = [Element]()
-    
-    var isEmpty: Bool {
-        return items.isEmpty
-    }
-    mutating func push(_ item: Element) {
-        items.append(item)
-    }
-    mutating func pop() -> Element {
-        return items.removeLast()
-    }
-}
-
-public protocol Diffable {
-    var diffIdentifier: AnyHashable { get }
-}
-
 /// https://github.com/Instagram/IGListKit/blob/master/Source/IGListDiff.mm
 public enum List {
     /// Used to track data stats while diffing.
@@ -55,7 +37,7 @@ public enum List {
         }
     }
     
-    public struct MoveIndex : Equatable {
+    public struct MoveIndex: Equatable {
         public let from: Int
         public let to: Int
         
@@ -94,7 +76,8 @@ public enum List {
         }
     }
     
-    public static func diffing<T: Diffable & Equatable>(oldArray: Array<T>, newArray: Array<T>) -> Result {
+    
+    public static func diffing<T: Diffable & Equatable>(old oldArray: Array<T>, new newArray: Array<T>) -> Result {
         // symbol table uses the old/new array `diffIdentifier` as the key and `Entry` as the value
         var table = Dictionary<AnyHashable, Entry>()
         

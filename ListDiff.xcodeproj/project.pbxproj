@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8557BA372165F74A00523E5A /* Diffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA362165F74A00523E5A /* Diffable.swift */; };
+		8557BA3B21660AAE00523E5A /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA3A21660AAE00523E5A /* Stack.swift */; };
 		A6FD5D4C1F8B710A006A2CDC /* ListDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FD5D421F8B710A006A2CDC /* ListDiff.framework */; };
 		A6FD5D511F8B710A006A2CDC /* ListDiffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FD5D501F8B710A006A2CDC /* ListDiffTests.swift */; };
 		A6FD5D531F8B710A006A2CDC /* ListDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FD5D451F8B710A006A2CDC /* ListDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +26,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8557BA362165F74A00523E5A /* Diffable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diffable.swift; sourceTree = "<group>"; };
+		8557BA3A21660AAE00523E5A /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		A6FD5D421F8B710A006A2CDC /* ListDiff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListDiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6FD5D451F8B710A006A2CDC /* ListDiff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDiff.h; sourceTree = "<group>"; };
 		A6FD5D461F8B710A006A2CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,7 +97,9 @@
 		A6FD5D5C1F8B719D006A2CDC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8557BA362165F74A00523E5A /* Diffable.swift */,
 				A6FD5D5D1F8B71C1006A2CDC /* ListDiff.swift */,
+				8557BA3A21660AAE00523E5A /* Stack.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -209,6 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8557BA372165F74A00523E5A /* Diffable.swift in Sources */,
+				8557BA3B21660AAE00523E5A /* Stack.swift in Sources */,
 				A6FD5D5E1F8B71C1006A2CDC /* ListDiff.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
