@@ -1,9 +1,10 @@
 import Foundation
 
 struct Stack<Element> {
-    var items = [Element]()
+    private(set) var items = [Element]()
+    
     var isEmpty: Bool {
-        return self.items.isEmpty
+        return items.isEmpty
     }
     mutating func push(_ item: Element) {
         items.append(item)
@@ -21,7 +22,7 @@ public protocol Diffable {
 public enum List {
     /// Used to track data stats while diffing.
     /// We expect to keep a reference of entry, thus its declaration as (final) class.
-    final class Entry {
+    private final class Entry {
         /// The number of times the data occurs in the old array
         var oldCounter: Int = 0
         /// The number of times the data occurs in the new array
@@ -32,20 +33,20 @@ public enum List {
         var updated: Bool = false
         /// Returns `true` if the data occur on both sides, `false` otherwise
         var occurOnBothSides: Bool {
-            return self.newCounter > 0 && self.oldCounter > 0
+            return newCounter > 0 && oldCounter > 0
         }
         func push(new index: Int?) {
-            self.newCounter += 1
-            self.oldIndexes.push(index)
+            newCounter += 1
+            oldIndexes.push(index)
         }
         func push(old index: Int?) {
-            self.oldCounter += 1;
-            self.oldIndexes.push(index)
+            oldCounter += 1;
+            oldIndexes.push(index)
         }
     }
     
     /// Track both the entry and the algorithm index. Default the index to `nil`
-    struct Record {
+    private struct Record {
         let entry: Entry
         var index: Int?
         init(_ entry: Entry) {
@@ -76,23 +77,24 @@ public enum List {
         public var oldMap = Dictionary<AnyHashable, Int>()
         public var newMap = Dictionary<AnyHashable, Int>()
         public var hasChanges: Bool {
-            return (self.inserts.count > 0) || (self.deletes.count > 0) || (self.updates.count > 0) || (self.moves.count > 0)
+            return inserts.count > 0 || deletes.count > 0 || updates.count > 0 || moves.count > 0
         }
         public var changeCount: Int {
-            return self.inserts.count + self.deletes.count + self.updates.count + self.moves.count
+            return inserts.count + deletes.count + updates.count + moves.count
         }
         public func validate(_ oldArray: Array<Diffable>, _ newArray: Array<Diffable>) -> Bool {
-            return (oldArray.count + self.inserts.count - self.deletes.count) == newArray.count
+            let diff = inserts.count - deletes.count
+            return oldArray.count + diff == newArray.count
         }
         public func oldIndexFor(identifier: AnyHashable) -> Int? {
-            return self.oldMap[identifier]
+            return oldMap[identifier]
         }
         public func newIndexFor(identifier: AnyHashable) -> Int? {
-            return self.newMap[identifier]
+            return newMap[identifier]
         }
     }
     
-    public static func diffing<T: Diffable & Equatable>(oldArray:Array<T>, newArray:Array<T>) -> Result {
+    public static func diffing<T: Diffable & Equatable>(oldArray: Array<T>, newArray: Array<T>) -> Result {
         // symbol table uses the old/new array `diffIdentifier` as the key and `Entry` as the value
         var table = Dictionary<AnyHashable, Entry>()
         
@@ -120,7 +122,7 @@ public enum List {
         // increment its old count for each occurence
         // record the old index for each occurence of the item in the old array
         // MUST be done in descending order to respect the oldIndexes stack construction
-        var oldRecords = oldArray.enumerated().reversed().map { (i, oldRecord) -> Record in
+        var oldRecords = oldArray.enumerated().reversed().map { i, oldRecord -> Record in
             let key = oldRecord.diffIdentifier
             if let entry = table[key] {
                 // push the old indices where the item occured onto the index stack
@@ -137,7 +139,7 @@ public enum List {
         
         // pass 3
         // handle data that occurs in both arrays
-        newRecords.enumerated().filter { $1.entry.occurOnBothSides }.forEach { (i, newRecord) in
+        newRecords.enumerated().filter { $1.entry.occurOnBothSides }.forEach { i, newRecord in
             let entry = newRecord.entry
             // grab and pop the top old index. if the item was inserted this will be nil
             assert(!entry.oldIndexes.isEmpty, "Old indexes is empty while iterating new item \(i). Should have nil")
@@ -165,7 +167,7 @@ public enum List {
         // iterate old array records checking for deletes
         // increment offset for each delete
         var runningOffset = 0
-        let deleteOffsets = oldRecords.enumerated().map { (i, oldRecord) -> Int in
+        let deleteOffsets = oldRecords.enumerated().map { i, oldRecord -> Int in
             let deleteOffset = runningOffset
             // if the record index in the new array doesn't exist, its a delete
             if oldRecord.index == nil {
@@ -178,7 +180,7 @@ public enum List {
         
         //reset and track offsets from inserted items to calculate where items have moved
         runningOffset = 0
-        /* let insertOffsets */_ = newRecords.enumerated().map { (i, newRecord) -> Int in
+        /* let insertOffsets */_ = newRecords.enumerated().map { i, newRecord -> Int in
             let insertOffset = runningOffset
             if let oldIndex = newRecord.index {
                 // note that an entry can be updated /and/ moved
