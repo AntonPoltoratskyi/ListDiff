@@ -59,7 +59,7 @@ public enum List {
         public var oldMap = Dictionary<AnyHashable, Int>()
         public var newMap = Dictionary<AnyHashable, Int>()
         public var hasChanges: Bool {
-            return inserts.count > 0 || deletes.count > 0 || updates.count > 0 || moves.count > 0
+            return changeCount > 0
         }
         public var changeCount: Int {
             return inserts.count + deletes.count + updates.count + moves.count
@@ -190,35 +190,5 @@ public enum List {
         assert(result.validate(oldArray, newArray), "Sanity check failed applying \(result.inserts.count) inserts and \(result.deletes.count) deletes to old count \(oldArray.count) equaling new count \(newArray.count)")
         
         return result
-    }
-}
-
-public extension List.Result {
-    
-    func forBatchUpdates() -> List.Result {
-        var result = self
-        result.prepareForBatchUpdates()
-        return result
-    }
-    
-    private mutating func prepareForBatchUpdates() {
-        // convert move+update to delete+insert, respecting the from/to of the move
-        for (index, move) in moves.enumerated().reversed() {
-            if updates.remove(move.from) != nil {
-                moves.remove(at: index)
-                deletes.insert(move.from)
-                inserts.insert(move.to)
-            }
-        }
-        
-        // iterate all new identifiers. if its index is updated, delete from the old index and insert the new index
-        for (key, oldIndex) in oldMap {
-            if updates.contains(oldIndex), let newIndex = newMap[key] {
-                deletes.insert(oldIndex)
-                inserts.insert(newIndex)
-            }
-        }
-        
-        updates.removeAll()
     }
 }
