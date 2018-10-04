@@ -10,6 +10,15 @@
 		8557BA372165F74A00523E5A /* Diffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA362165F74A00523E5A /* Diffable.swift */; };
 		8557BA3B21660AAE00523E5A /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA3A21660AAE00523E5A /* Stack.swift */; };
 		8557BA3D21660FF800523E5A /* ListDiff+BatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA3C21660FF800523E5A /* ListDiff+BatchUpdates.swift */; };
+		8557BA522166171D00523E5A /* ListDiffStressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA512166171D00523E5A /* ListDiffStressTests.swift */; };
+		8557BA542166171D00523E5A /* ListDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FD5D421F8B710A006A2CDC /* ListDiff.framework */; };
+		8557BA5A2166174B00523E5A /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA432166160200523E5A /* CellData.swift */; };
+		8557BA5B2166174D00523E5A /* CellDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA452166166300523E5A /* CellDataGenerator.swift */; };
+		8557BA5C2166175000523E5A /* CellDataGeneratorResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA472166169800523E5A /* CellDataGeneratorResult.swift */; };
+		8557BA5D2166175500523E5A /* CollectionViewUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA49216616C500523E5A /* CollectionViewUpdater.swift */; };
+		8557BA5F2166177500523E5A /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA5E2166177500523E5A /* Cell.swift */; };
+		8557BA62216617FF00523E5A /* ObjCExceptionCatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA61216617FF00523E5A /* ObjCExceptionCatcher.swift */; };
+		8557BA662166189200523E5A /* ObjCExceptionCatcherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8557BA652166189200523E5A /* ObjCExceptionCatcherHelper.m */; };
 		A6FD5D4C1F8B710A006A2CDC /* ListDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FD5D421F8B710A006A2CDC /* ListDiff.framework */; };
 		A6FD5D511F8B710A006A2CDC /* ListDiffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FD5D501F8B710A006A2CDC /* ListDiffTests.swift */; };
 		A6FD5D531F8B710A006A2CDC /* ListDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FD5D451F8B710A006A2CDC /* ListDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8557BA552166171D00523E5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6FD5D391F8B7109006A2CDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6FD5D411F8B7109006A2CDC;
+			remoteInfo = ListDiff;
+		};
 		A6FD5D4D1F8B710A006A2CDC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A6FD5D391F8B7109006A2CDC /* Project object */;
@@ -30,6 +46,18 @@
 		8557BA362165F74A00523E5A /* Diffable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diffable.swift; sourceTree = "<group>"; };
 		8557BA3A21660AAE00523E5A /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		8557BA3C21660FF800523E5A /* ListDiff+BatchUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListDiff+BatchUpdates.swift"; sourceTree = "<group>"; };
+		8557BA432166160200523E5A /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		8557BA452166166300523E5A /* CellDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDataGenerator.swift; sourceTree = "<group>"; };
+		8557BA472166169800523E5A /* CellDataGeneratorResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDataGeneratorResult.swift; sourceTree = "<group>"; };
+		8557BA49216616C500523E5A /* CollectionViewUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewUpdater.swift; sourceTree = "<group>"; };
+		8557BA4F2166171D00523E5A /* ListDiffStressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListDiffStressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8557BA512166171D00523E5A /* ListDiffStressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDiffStressTests.swift; sourceTree = "<group>"; };
+		8557BA532166171D00523E5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8557BA5E2166177500523E5A /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		8557BA61216617FF00523E5A /* ObjCExceptionCatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjCExceptionCatcher.swift; sourceTree = "<group>"; };
+		8557BA632166189200523E5A /* ListDiffStressTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ListDiffStressTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		8557BA642166189200523E5A /* ObjCExceptionCatcherHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCExceptionCatcherHelper.h; sourceTree = "<group>"; };
+		8557BA652166189200523E5A /* ObjCExceptionCatcherHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCExceptionCatcherHelper.m; sourceTree = "<group>"; };
 		A6FD5D421F8B710A006A2CDC /* ListDiff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListDiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6FD5D451F8B710A006A2CDC /* ListDiff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDiff.h; sourceTree = "<group>"; };
 		A6FD5D461F8B710A006A2CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,6 +68,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8557BA4C2166171D00523E5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8557BA542166171D00523E5A /* ListDiff.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6FD5D3E1F8B7109006A2CDC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,12 +94,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8557BA42216614E100523E5A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				8557BA60216617E800523E5A /* ObjCExceptionCatcher */,
+				8557BA5E2166177500523E5A /* Cell.swift */,
+				8557BA432166160200523E5A /* CellData.swift */,
+				8557BA452166166300523E5A /* CellDataGenerator.swift */,
+				8557BA472166169800523E5A /* CellDataGeneratorResult.swift */,
+				8557BA49216616C500523E5A /* CollectionViewUpdater.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		8557BA502166171D00523E5A /* ListDiffStressTests */ = {
+			isa = PBXGroup;
+			children = (
+				8557BA632166189200523E5A /* ListDiffStressTests-Bridging-Header.h */,
+				8557BA42216614E100523E5A /* Support */,
+				8557BA512166171D00523E5A /* ListDiffStressTests.swift */,
+				8557BA532166171D00523E5A /* Info.plist */,
+			);
+			path = ListDiffStressTests;
+			sourceTree = "<group>";
+		};
+		8557BA60216617E800523E5A /* ObjCExceptionCatcher */ = {
+			isa = PBXGroup;
+			children = (
+				8557BA61216617FF00523E5A /* ObjCExceptionCatcher.swift */,
+				8557BA642166189200523E5A /* ObjCExceptionCatcherHelper.h */,
+				8557BA652166189200523E5A /* ObjCExceptionCatcherHelper.m */,
+			);
+			path = ObjCExceptionCatcher;
+			sourceTree = "<group>";
+		};
 		A6FD5D381F8B7109006A2CDC = {
 			isa = PBXGroup;
 			children = (
 				A6FD5D5C1F8B719D006A2CDC /* Sources */,
 				A6FD5D441F8B710A006A2CDC /* ListDiff */,
 				A6FD5D4F1F8B710A006A2CDC /* ListDiffTests */,
+				8557BA502166171D00523E5A /* ListDiffStressTests */,
 				A6FD5D431F8B710A006A2CDC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +144,7 @@
 			children = (
 				A6FD5D421F8B710A006A2CDC /* ListDiff.framework */,
 				A6FD5D4B1F8B710A006A2CDC /* ListDiffTests.xctest */,
+				8557BA4F2166171D00523E5A /* ListDiffStressTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +193,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8557BA4E2166171D00523E5A /* ListDiffStressTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8557BA572166171D00523E5A /* Build configuration list for PBXNativeTarget "ListDiffStressTests" */;
+			buildPhases = (
+				8557BA4B2166171D00523E5A /* Sources */,
+				8557BA4C2166171D00523E5A /* Frameworks */,
+				8557BA4D2166171D00523E5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8557BA562166171D00523E5A /* PBXTargetDependency */,
+			);
+			name = ListDiffStressTests;
+			productName = ListDiffStressTests;
+			productReference = 8557BA4F2166171D00523E5A /* ListDiffStressTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A6FD5D411F8B7109006A2CDC /* ListDiff */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6FD5D561F8B710A006A2CDC /* Build configuration list for PBXNativeTarget "ListDiff" */;
@@ -163,10 +253,15 @@
 		A6FD5D391F8B7109006A2CDC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = ListDiff;
 				TargetAttributes = {
+					8557BA4E2166171D00523E5A = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
+						ProvisioningStyle = Automatic;
+					};
 					A6FD5D411F8B7109006A2CDC = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
@@ -192,11 +287,19 @@
 			targets = (
 				A6FD5D411F8B7109006A2CDC /* ListDiff */,
 				A6FD5D4A1F8B710A006A2CDC /* ListDiffTests */,
+				8557BA4E2166171D00523E5A /* ListDiffStressTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8557BA4D2166171D00523E5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6FD5D401F8B7109006A2CDC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +317,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8557BA4B2166171D00523E5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8557BA5D2166175500523E5A /* CollectionViewUpdater.swift in Sources */,
+				8557BA62216617FF00523E5A /* ObjCExceptionCatcher.swift in Sources */,
+				8557BA5C2166175000523E5A /* CellDataGeneratorResult.swift in Sources */,
+				8557BA5B2166174D00523E5A /* CellDataGenerator.swift in Sources */,
+				8557BA522166171D00523E5A /* ListDiffStressTests.swift in Sources */,
+				8557BA5A2166174B00523E5A /* CellData.swift in Sources */,
+				8557BA662166189200523E5A /* ObjCExceptionCatcherHelper.m in Sources */,
+				8557BA5F2166177500523E5A /* Cell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6FD5D3D1F8B7109006A2CDC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,6 +354,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8557BA562166171D00523E5A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6FD5D411F8B7109006A2CDC /* ListDiff */;
+			targetProxy = 8557BA552166171D00523E5A /* PBXContainerItemProxy */;
+		};
 		A6FD5D4E1F8B710A006A2CDC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A6FD5D411F8B7109006A2CDC /* ListDiff */;
@@ -244,6 +367,45 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		8557BA582166171D00523E5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69HX7T8G92;
+				INFOPLIST_FILE = ListDiffStressTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.polant.list-diff-stress-tests.ListDiffStressTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ListDiffStressTests/ListDiffStressTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8557BA592166171D00523E5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69HX7T8G92;
+				INFOPLIST_FILE = ListDiffStressTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.polant.list-diff-stress-tests.ListDiffStressTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ListDiffStressTests/ListDiffStressTests-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		A6FD5D541F8B710A006A2CDC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -411,10 +573,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69HX7T8G92;
 				INFOPLIST_FILE = Tests/ListDiffTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.lxcid.ListDiffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REEXPORTED_LIBRARY_PATHS = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -425,10 +589,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69HX7T8G92;
 				INFOPLIST_FILE = Tests/ListDiffTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.lxcid.ListDiffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REEXPORTED_LIBRARY_PATHS = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -437,6 +603,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8557BA572166171D00523E5A /* Build configuration list for PBXNativeTarget "ListDiffStressTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8557BA582166171D00523E5A /* Debug */,
+				8557BA592166171D00523E5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A6FD5D3C1F8B7109006A2CDC /* Build configuration list for PBXProject "ListDiff" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
