@@ -34,19 +34,47 @@ github "lxcid/ListDiff" "master"
 ```swift
 import ListDiff
 
-extension Int : Diffable {
+public protocol Diffable {
+    var diffIdentifier: AnyHashable { get }
+}
+
+extension Int: Diffable {
     public var diffIdentifier: AnyHashable {
         return self
     }
 }
-let o = [0, 1, 2]
-let n = [2, 1, 3]
-let result = List.diffing(old: o, new: n).forBatchUpdates()
-// result.hasChanges == true
-// result.deletes == IndexSet(integer: 0)
-// result.inserts == IndexSet(integer: 2)
-// result.moves == [List.MoveIndex(from: 2, to: 0), List.MoveIndex(from: 1, to: 1)]
-// result.changeCount == 4
+let old = [0, 1, 2]
+let new = [2, 1, 3]
+let diff = List.diffing(old: old, new: new).forBatchUpdates().
+
+// diff.hasChanges == true
+// diff.deletes == IndexSet(integer: 0)
+// diff.inserts == IndexSet(integer: 2)
+// diff.moves == [List.MoveIndex(from: 2, to: 0), List.MoveIndex(from: 1, to: 1)]
+// diff.changeCount == 4
+
+ collectionView.performBatchUpdates({
+        if !diff.deletes.isEmpty {
+            collectionView.deleteItems(
+                at: diff.deletes.map {
+                    IndexPath(item: $0, section: 0)
+                }
+            )
+        }
+        if !diff.inserts.isEmpty {
+            collectionView.insertItems(
+                at: diff.inserts.map {
+                    IndexPath(item: $0, section: 0)
+                }
+            )
+        }
+        for move in diff.moves {
+            collectionView.moveItem(
+                at: IndexPath(item: move.from, section: 0),
+                to: IndexPath(item: move.to, section: 0)
+            )
+        }
+}, completion: nil)
 ```
 
 ## Rationale
