@@ -41,7 +41,7 @@ extension Int : Diffable {
 }
 let o = [0, 1, 2]
 let n = [2, 1, 3]
-let result = List.diffing(oldArray: o, newArray: n)
+let result = List.diffing(old: o, new: n).forBatchUpdates()
 // result.hasChanges == true
 // result.deletes == IndexSet(integer: 0)
 // result.inserts == IndexSet(integer: 2)
